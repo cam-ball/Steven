@@ -1,4 +1,4 @@
-require 'Discordrb'
+require 'discordrb'
 require 'yaml'
 
 module Steven
