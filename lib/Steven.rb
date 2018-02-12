@@ -1,5 +1,6 @@
 require 'discordrb'
 require 'yaml'
+require 'pry'
 
 module Steven
   require_relative 'Steven/config'
@@ -15,8 +16,14 @@ module Steven
 
   # This method call adds an event handler that will be called on any message that exactly contains the string "Ping!".
   # The code inside it will be executed, and a "Pong!" response will be sent to the channel.
-  bot.message(content: 'ping') do |event|
-    event.respond 'Pong!'
+  bot.message do |event|
+    if event.content.include?('hello')
+      event.respond 'hiya!'
+    end
+
+    if event.content.include?('bye')
+      event.respond 'http://media.riffsy.com/images/378a40831d1001c96af434aa24b6dd97/tenor.gif'
+    end
   end
 
   bot.run
