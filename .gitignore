@@ -7,8 +7,8 @@
 /spec/reports/
 /tmp/
 .DS_Store
-/config/config.yml
-/config/data.yml
+/data/config.yml
+/data/runtime_variables.yml
 
 
 # rspec failure tracking
