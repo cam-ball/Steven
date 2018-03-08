@@ -23,7 +23,7 @@ module Steven
   puts 'Click on it to invite it to your server.'
 
   BOT.include!(Coddler)
-  # BOT.include!(Greeter)
+  BOT.include!(Greeter)
 
   BOT.run
 end

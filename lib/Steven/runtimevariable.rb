@@ -30,7 +30,7 @@ module Steven
     end
 
     def create_message_seed
-      @vars[:current_message_seed] = Random.rand(1..5)
+      @vars[:current_message_seed] = Random.rand(5..10)
       @vars[:current_counter] = 0
 
       save_configurations
@@ -44,7 +44,7 @@ module Steven
 
       @vars[:current_counter] = 0
 
-      @vars[:current_message_seed] = Random.rand(1..5)
+      @vars[:current_message_seed] = Random.rand(5..10)
       puts "No configuration file found in #{Dir.pwd}/config/config.yml"
       puts 'Creating file now...'
 
@@ -62,7 +62,7 @@ module Steven
     end
 
     def reload_datafile
-      @runtime_var_file = "#{Dir.pwd}/data/data.yml"
+      @runtime_var_file = "#{Dir.pwd}/data/runtime_variables.yml"
       file_contents = YAML.load_file(@runtime_var_file) if File.exist?(@runtime_var_file)
 
       @vars = file_contents
