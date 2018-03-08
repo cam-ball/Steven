@@ -4,9 +4,12 @@ require 'pry'
 
 module Steven
   require_relative 'Steven/config'
+  require_relative 'Steven/data'
   require_relative 'Steven/greeter'
+  require_relative 'Steven/coddler'
 
   CONFIG = Config.new
+  DATA = Data.new
 
   BOT = Discordrb::Bot.new(
     token: CONFIG.discord_token,
@@ -19,7 +22,8 @@ module Steven
   puts "This bot's invite URL is #{BOT.invite_url}."
   puts 'Click on it to invite it to your server.'
 
-  BOT.include!(Greeter)
+  BOT.include!(Coddler)
+  # BOT.include!(Greeter)
 
   BOT.run
 end

@@ -8,6 +8,7 @@
 /tmp/
 .DS_Store
 /config/config.yml
+/config/data.yml
 
 
 # rspec failure tracking
