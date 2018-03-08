@@ -2,7 +2,7 @@ module Steven
   class Config
 
     def initialize
-      @config_file = "#{Dir.pwd}/config/config.yml"
+      @config_file = "#{Dir.pwd}/data/config.yml"
       file_contents = YAML.load_file(@config_file) if File.exist?(@config_file)
 
       if file_contents.is_a?(Hash) && !file_contents.empty?

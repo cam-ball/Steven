@@ -4,12 +4,12 @@ require 'pry'
 
 module Steven
   require_relative 'Steven/config'
-  require_relative 'Steven/data'
+  require_relative 'Steven/runtimevariable'
   require_relative 'Steven/greeter'
   require_relative 'Steven/coddler'
 
   CONFIG = Config.new
-  DATA = Data.new
+  VARS = RuntimeVariable.new
 
   BOT = Discordrb::Bot.new(
     token: CONFIG.discord_token,
