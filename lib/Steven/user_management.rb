@@ -23,6 +23,7 @@ module Steven
       user = @users.select { |usr| usr.user_id == user_id }.first
 
       return unless user
+
       user.add_action(action)
     end
 

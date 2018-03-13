@@ -31,9 +31,6 @@ module Steven
       else
         event.respond "Only my owner is allowed to run this command"
       end
-
-
-
     end
 
     command :savedata do |event|
