@@ -5,16 +5,20 @@ module Steven
     @affirmations = YAML.load_file("#{Dir.pwd}/data/affirmations.yml")
 
     message do |event|
-      if event.author.id == VARS.downtrodden_user.to_i
-        VARS.current_counter += 1
+      author_id = event.author.id
 
-        if VARS.current_counter == VARS.current_message_seed
-          event.respond(@affirmations.sample)
+      user = USERS.find_user(author_id)
 
-          VARS.create_message_seed
+      if user
+        if user.action_exists?(:affirm)
+          user.increment_affirmation
+
+          if user.trigger_affirmation?
+            user.reset_action(:affirm)
+            event.respond @affirmations.sample
+          end
         end
       end
     end
-
   end
 end
