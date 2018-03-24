@@ -9,6 +9,7 @@ module Steven
   require_relative 'Steven/coddler'
   require_relative 'Steven/admin'
   require_relative 'Steven/user'
+  require_relative 'Steven/retaliator'
 
   CONFIG = Config.new
   USERS = UserManagement.new
@@ -23,6 +24,7 @@ module Steven
   BOT.include!(Admin)
   BOT.include!(Coddler)
   BOT.include!(Greeter)
+  BOT.include!(Retaliator)
 
   at_exit do
     USERS.save_user_data
