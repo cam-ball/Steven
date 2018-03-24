@@ -3,13 +3,7 @@ require 'yaml'
 require 'pry'
 
 module Steven
-  require_relative 'Steven/config'
-  require_relative 'Steven/user_management'
-  require_relative 'Steven/greeter'
-  require_relative 'Steven/coddler'
-  require_relative 'Steven/admin'
-  require_relative 'Steven/user'
-  require_relative 'Steven/retaliator'
+  Dir["#{File.dirname(__FILE__)}/steven/*.rb"].each { |file| require file }
 
   CONFIG = Config.new
   USERS = UserManagement.new
