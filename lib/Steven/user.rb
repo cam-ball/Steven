@@ -1,10 +1,10 @@
 module Steven
+  # User class containing all data for any individual configured by owner
   class User
     attr_reader :user_id
     attr_accessor :actions
 
-
-    ALLOWED_ACTIONS = [:affirm, :haze]
+    ALLOWED_ACTIONS = %i[affirm haze].freeze
 
     def initialize(user_id)
       @user_id = user_id.to_i
@@ -13,7 +13,9 @@ module Steven
 
     def add_action(action)
       action = action.to_sym
-      return "Requested action #{action} not defined" unless ALLOWED_ACTIONS.include?(action) && !action_exists?(action)
+      unless ALLOWED_ACTIONS.include?(action) && !action_exists?(action)
+        return "Requested action #{action} not defined"
+      end
 
       @actions << action
 
@@ -38,7 +40,10 @@ module Steven
 
     def reset_action(action)
       action = action.to_sym
-      return "Requested action #{action} not defined" unless ALLOWED_ACTIONS.include?(action) && action_exists?(action)
+
+      unless ALLOWED_ACTIONS.include?(action) && action_exists?(action)
+        return "Requested action #{action} not defined"
+      end
 
       initialize_action(action)
     end

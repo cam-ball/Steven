@@ -1,14 +1,17 @@
 module Steven
+  # Wrapper class for general user management
   class UserManagement
-
     def initialize
       @users = []
       @user_data_file = "#{Dir.pwd}/data/user_data.yml"
-      file_contents = YAML.load_file(@user_data_file) if File.exist?(@user_data_file)
 
-      if file_contents.is_a?(Array) && !file_contents.empty?
-        @users = file_contents
+      if File.exist?(@user_data_file)
+        file_contents = YAML.load_file(@user_data_file)
       end
+
+      return unless file_contents.is_a?(Array) && !file_contents.empty?
+
+      @users = file_contents
     end
 
     def add_user(user)

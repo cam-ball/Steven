@@ -1,4 +1,5 @@
 module Steven
+  # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
 
@@ -7,9 +8,7 @@ module Steven
         event.respond "Please provide a valid user ID" unless user_id
         user_id = user_id.to_i
 
-        if USERS.user_exists?(user_id)
-          event.respond "User already exists"
-        end
+        event.respond "User already exists" if USERS.user_exists?(user_id)
 
         new_user = User.new(user_id)
         USERS.add_user(new_user)
@@ -22,7 +21,9 @@ module Steven
 
     command :addaction do |event, user_id, action|
       if event.author.id == CONFIG.owner_id
-        event.respond "Please provide a valid user ID and action" unless user_id && action
+        unless user_id && action
+          event.respond "Please provide a valid user ID and action"
+        end
         user_id = user_id.to_i
         action = action.to_sym
 
@@ -38,7 +39,7 @@ module Steven
         USERS.save_user_data
         event.respond "User data file updated"
       else
-        event.respond "Only my owner is allowed to run this command" unless event.author.id == CONFIG.owner_id
+        event.respond "Only my owner is allowed to run this command"
       end
     end
   end

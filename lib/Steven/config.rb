@@ -1,6 +1,6 @@
 module Steven
+  # Initial configuration for new install
   class Config
-
     def initialize
       @config_file = "#{Dir.pwd}/data/config.yml"
       file_contents = YAML.load_file(@config_file) if File.exist?(@config_file)
@@ -8,7 +8,7 @@ module Steven
       if file_contents.is_a?(Hash) && !file_contents.empty?
         @config = file_contents
       else
-        initialize_configuration
+        configuration_wizard
       end
     end
 
@@ -26,12 +26,18 @@ module Steven
 
     private
 
-    def initialize_configuration
+    def configuration_wizard
       @config = {}
 
       puts "No configuration file found in #{Dir.pwd}/config/config.yml"
       puts 'Creating file now...'
 
+      read_discord_configurations
+
+      save_configurations
+    end
+
+    def read_discord_configurations
       puts 'Enter Discord application token '
       @config[:discord_token] = gets.chomp
 
@@ -41,8 +47,6 @@ module Steven
       puts 'Enter owner\'s user ID (press enter for default) '
       @config[:owner_id] = gets.chomp
       @config[:owner_id] = 221687578997424129 if @config[:owner_id].empty?
-
-      save_configurations
     end
 
     def save_configurations
