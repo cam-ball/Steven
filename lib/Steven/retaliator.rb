@@ -1,4 +1,5 @@
 module Steven
+  # Jumps to the defense of those in need
   module Retaliator
     extend Discordrb::EventContainer
 
