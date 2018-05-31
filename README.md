@@ -1,7 +1,7 @@
 # Steven
 ---
 *with a 'v'*  
-  
+
 General purpose Discord bot for morale improvement.
 
 ### Usage
@@ -26,8 +26,7 @@ General purpose Discord bot for morale improvement.
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization
 - User management:  
- - `!adduser [user_id]` adds a user to whitelisted users list
- - `!addaction [user_id] affirm` configures already tracked user to receieve occasional affirmation
+ - `!addaction [user_id] affirm` tracks user to receive occasional affirmation
  - `!addaction [user_id] haze` configures already tracked user to receieve light hearted hazing
  - `!savedata` dumps all user data into `user_data.yml`  
 

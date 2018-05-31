@@ -8,7 +8,7 @@ module Steven
     message do |event|
       author_id = event.author.id
 
-      user = USERS.find_user(author_id)
+      user = USER_MANAGEMENT.find_user(author_id)
 
       if user
         if user.action_exists?(:affirm)
