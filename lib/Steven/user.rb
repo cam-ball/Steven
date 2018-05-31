@@ -13,13 +13,15 @@ module Steven
 
     def add_action(action)
       action = action.to_sym
-      unless ALLOWED_ACTIONS.include?(action) && !action_exists?(action)
+
+      unless ALLOWED_ACTIONS.include?(action)
         return "Requested action '#{action}' not defined"
       end
 
-      @actions << action
-
-      initialize_action(action)
+      unless action_exists?(action)
+        @actions << action
+        initialize_action(action)
+      end
 
       "Action added"
     end

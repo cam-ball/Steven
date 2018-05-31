@@ -11,10 +11,7 @@ module Steven
         user_id = user_id.to_i
         action = action.to_sym
 
-        unless USER_MANAGEMENT.user_exists?(user_id)
-          USER_MANAGEMENT.add_user(User.new(user_id))
-        end
-
+        USER_MANAGEMENT.add_user(User.new(user_id))
         event.respond USER_MANAGEMENT.add_action(user_id, action)
       else
         event.respond "Only my owner is allowed to run this command"

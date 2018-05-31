@@ -15,6 +15,7 @@ module Steven
     end
 
     def add_user(user)
+      return if user_exists?(user.user_id)
       @users << user
     end
 
