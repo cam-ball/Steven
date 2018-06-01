@@ -19,6 +19,7 @@ module Steven
   BOT.include!(Admin)
   BOT.include!(Coddler)
   BOT.include!(Greeter)
+  BOT.include!(Hazer)
   BOT.include!(Retaliator)
 
   at_exit do
