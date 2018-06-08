@@ -1,5 +1,5 @@
 module Steven
-    # Responds positivbely to mesasges from users with the :affirm configuration
+    # Responds negatively to mesasges from users with the :haze configuration
     module Hazer
       extend Discordrb::EventContainer
   

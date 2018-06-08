@@ -1,5 +1,5 @@
 module Steven
-  # Responds positivbely to mesasges from users with the :affirm configuration
+  # Responds positively to mesasges from users with the :affirm configuration
   module Coddler
     extend Discordrb::EventContainer
 
