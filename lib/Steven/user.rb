@@ -1,13 +1,14 @@
 module Steven
   # User class containing all data for any individual configured by owner
   class User
-    attr_reader :user_id
+    attr_reader :user_id, :username
     attr_accessor :actions
 
     ALLOWED_ACTIONS = %i[affirm haze].freeze
 
-    def initialize(user_id)
+    def initialize(user_id, username)
       @user_id = user_id.to_i
+      @username = username
       @actions = []
     end
 
