@@ -28,6 +28,7 @@ Can only be performed by the user designated as `:owner_id` in config.yml, which
 - User management:  
  - `!adduser [user_id]` adds a user to whitelisted users list
  - `!addaction [user_id] affirm` configures already tracked user to receieve occasional affirmation
+ - `!addaction [user_id] haze` configures already tracked user to receieve light hearted hazing
  - `!savedata` dumps all user data into `user_data.yml`  
 
 #### Contributing
