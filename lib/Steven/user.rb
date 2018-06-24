@@ -13,13 +13,17 @@ module Steven
 
     def add_action(action)
       action = action.to_sym
-      unless ALLOWED_ACTIONS.include?(action) && !action_exists?(action)
-        return "Requested action #{action} not defined"
+
+      unless ALLOWED_ACTIONS.include?(action)
+        return "Requested action '#{action}' not defined"
       end
 
-      @actions << action
+      unless action_exists?(action)
+        @actions << action
+        initialize_action(action)
+      end
 
-      initialize_action(action)
+      "Action added"
     end
 
     def increment_affirmation
@@ -42,7 +46,7 @@ module Steven
       action = action.to_sym
 
       unless ALLOWED_ACTIONS.include?(action) && action_exists?(action)
-        return "Requested action #{action} not defined"
+        return "Requested action '#{action}' not defined"
       end
 
       initialize_action(action)
