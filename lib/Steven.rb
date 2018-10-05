@@ -4,7 +4,14 @@ require 'pry'
 
 # Base class housing all data and modules for Steven
 module Steven
-  Dir["#{File.dirname(__FILE__)}/steven/*.rb"].each { |file| require file }
+  require_relative 'Steven/admin'
+  require_relative 'Steven/coddler'
+  require_relative 'Steven/config'
+  require_relative 'Steven/greeter'
+  require_relative 'Steven/hazer'
+  require_relative 'Steven/retaliator'
+  require_relative 'Steven/user_management'
+  require_relative 'Steven/user'
 
   CONFIG = Config.new
   USER_MANAGEMENT = UserManagement.new
