@@ -5,9 +5,9 @@ module Steven
 
     message do |event|
       if event.content.downcase.include?('hello')
-        event.respond 'hiya!'
+        event.respond 'Greetings!'
       elsif event.content.downcase.include?('bye')
-        event.respond 'http://media.riffsy.com/images/378a40831d1001c96af434aa24b6dd97/tenor.gif'
+        event.respond 'I suppose this is good-bye for now.'
       end
     end
   end
