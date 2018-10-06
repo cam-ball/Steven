@@ -9,12 +9,13 @@ module Steven
   require_relative 'Steven/config'
   require_relative 'Steven/greeter'
   require_relative 'Steven/hazer'
+  require_relative 'Steven/info'
   require_relative 'Steven/retaliator'
   require_relative 'Steven/user_management'
   require_relative 'Steven/user'
 
   CONFIG = Config.new
-  USER_MANAGEMENT = UserManagement.new
+  USER_LIST = UserManagement.new
 
   BOT = Discordrb::Commands::CommandBot.new(token: CONFIG.discord_token,
                                             client_id: CONFIG.client_id,
@@ -27,10 +28,11 @@ module Steven
   BOT.include!(Coddler)
   BOT.include!(Greeter)
   BOT.include!(Hazer)
+  BOT.include!(Info)
   BOT.include!(Retaliator)
 
   at_exit do
-    USER_MANAGEMENT.save_user_data
+    USER_LIST.save_user_data
   end
 
   BOT.run
