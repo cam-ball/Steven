@@ -1,15 +1,24 @@
 module Steven
   # User class containing all data for any individual configured by owner
   class User
-    attr_reader :user_id, :username
-    attr_accessor :actions
+    attr_accessor :actions, :server_id, :user_id, :username, :nicnkname
 
     ALLOWED_ACTIONS = %i[affirm haze].freeze
 
-    def initialize(user_id, username)
-      @user_id = user_id.to_i
-      @username = username
+    def initialize(params = {})
+      @user_id = params[:user_id]
+      @username = params[:username]
+      @nickname = params[:nickname]
+      @server_id = params[:server_id]
       @actions = []
+    end
+
+    def complete?
+      @user_id && @username && @server_id
+    end
+
+    def action_list_s
+      @actions.join(", ")
     end
 
     def add_action(action)
@@ -55,6 +64,17 @@ module Steven
 
     def action_exists?(action)
       @actions.include?(action)
+    end
+
+    def messages_until?(action)
+      return unless action_exists?(action)
+
+      case action
+      when :affirm
+        @affirmation_trigger - @affirmation_counter
+      when :haze
+        @haze_trigger - @haze_counter
+      end
     end
 
     private

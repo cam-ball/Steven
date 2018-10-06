@@ -19,12 +19,16 @@ module Steven
       @users << user
     end
 
-    def find_user(user_id)
+    def find_user_by_id(user_id)
       @users.select { |usr| usr.user_id == user_id }.first
     end
 
-    def add_action(user_id, action)
-      user = @users.select { |usr| usr.user_id == user_id }.first
+    def find_user_by_username(username)
+      @users.select { |usr| usr.username == username }.first
+    end
+
+    def add_action(new_user, action)
+      user = @users.select { |usr| usr.user_id == new_user.user_id }.first
 
       return unless user
 
@@ -39,6 +43,23 @@ module Steven
       File.open(@user_data_file, 'w') do |f|
         f.write YAML.dump(@users)
       end
+    end
+
+    def self.lookup_user_by_server_id(user_info, server_id)
+      if user_info.to_i.positive?
+        BOT.servers[server_id].users.select { |u| u.id == user_info.to_i }
+      else
+        BOT.servers[server_id].users.select do |u|
+          u.username == user_info || u.nickname == user_info
+        end
+      end
+    end
+
+    def self.add_user_and_action(new_user, action)
+      return 'Invalid User' unless new_user.complete?
+
+      USER_LIST.add_user(new_user)
+      USER_LIST.add_action(new_user, action)
     end
   end
 end
