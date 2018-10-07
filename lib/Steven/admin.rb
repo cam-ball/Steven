@@ -2,18 +2,19 @@ module Steven
   # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
-    command :addaction do |event, action, user_info|
+    command :addaction do |event, action, *user_info|
+      @user = user_info.join(" ")
       if event.author.id == CONFIG.owner_id
-        unless user_info && action
+        unless @user && action
           event.respond "Please provide a valid user name or ID and action"
         end
         action = action.to_sym
 
-        if user_info.to_i.positive?
-          user_id = user_info.to_i
+        if @user.to_i.positive?
+          user_id = @user.to_i
           username = lookup_by_user_id(event.server.id, user_id)
         else
-          username = user_info
+          username = @user
           user_id = lookup_by_username(event.server.id, username)
 
           user_id = user_id.first unless user_id.size > 1
