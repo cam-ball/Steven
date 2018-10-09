@@ -12,7 +12,9 @@ module Steven
         if user_info.to_i.positive?
           user_id = user_info.to_i
           username = lookup_by_user_id(event.server.id, user_id)
-        else
+        end
+        
+        unless username
           username = user_info
           user_id = lookup_by_username(event.server.id, username)
 
