@@ -32,4 +32,4 @@ Can only be performed by the user designated as `:owner_id` in config.yml, which
 
 #### Contributing
 ---
-Check out [CONTRIBUTING.md](https://github.com/laurenball/Steven/blob/master/CONTRIBUTING.md) for those sw33t sw33t d33ts
+Check out [CONTRIBUTING.md](https://github.com/laurenball/Steven/blob/master/CONTRIBUTING.md) for those sweet sweet deets
