@@ -2,7 +2,16 @@ module Steven
   # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
-    command :addaction do |event, action, *user_info|
+    command(:addaction, description: <<-helptext
+      Instruct Steven to begin tracking a user
+      actions:
+        affirm - Steven showers the user with affection
+        haze - Steven repremands the user
+      user_info can be a user ID or username
+      usage:
+        `!addaction approve Steven`
+      helptext
+      ) do |event, action, *user_info|
       user_info = user_info.join(" ")
       if event.author.id == CONFIG.owner_id
         unless user_info && action
@@ -33,7 +42,7 @@ module Steven
       end
     end
 
-    command :savedata do |event|
+    command(:savedata, description: 'Manually saves user data to user data file') do |event|
       if event.author.id == CONFIG.owner_id
         USER_MANAGEMENT.save_user_data
         event.respond "User file updated"
