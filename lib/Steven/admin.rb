@@ -2,16 +2,15 @@ module Steven
   # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
-    command(:addaction, description: <<-helptext
+    command(:addaction, description: <<-DESC
       Instruct Steven to begin tracking a user
       actions:
-        affirm - Steven showers the user with affection
-        haze - Steven repremands the user
+        affirm, haze
       user_info can be a user ID or username
       usage:
         `!addaction approve Steven`
-      helptext
-      ) do |event, action, *user_info|
+      DESC
+    ) do |event, action, *user_info|
       user_info = user_info.join(" ")
       if event.author.id == CONFIG.owner_id
         unless user_info && action
