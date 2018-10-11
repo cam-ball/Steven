@@ -5,7 +5,7 @@ module Steven
   class Info
     extend Discordrb::Commands::CommandContainer
 
-    command :display do |event, user_info|
+    command(:display, description: 'Show relevant user information') do |event, user_info|
 
       server_users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
 
