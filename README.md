@@ -26,8 +26,8 @@ General purpose Discord bot for morale improvement.
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization
 - User management:  
- - `!addaction [user_id] affirm` tracks user to receive occasional affirmation
- - `!addaction [user_id] haze` configures already tracked user to receieve light hearted hazing
+ - `!addaction affirm [user_id]` tracks user to receive occasional affirmation
+ - `!addaction haze [user_id]` configures already tracked user to receive lighthearted hazing
  - `!savedata` dumps all user data into `user_data.yml`  
 
 #### Contributing
