@@ -9,6 +9,7 @@ module Steven
   require_relative 'Steven/config'
   require_relative 'Steven/greeter'
   require_relative 'Steven/hazer'
+  require_relative 'Steven/reply_to_mention'
   require_relative 'Steven/info'
   require_relative 'Steven/retaliator'
   require_relative 'Steven/user_management'
@@ -28,6 +29,7 @@ module Steven
   BOT.include!(Coddler)
   BOT.include!(Greeter)
   BOT.include!(Hazer)
+  BOT.include!(Reply_To_Mention)
   BOT.include!(Info)
   BOT.include!(Retaliator)
 
