@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
-- Update ruby version from 2.4.1 -> 2.7.0
+- Update ruby version from 2.4.1 -> 2.6.0
 
 ### 2018-10-05
 #### Added
