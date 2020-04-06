@@ -45,8 +45,8 @@ module Steven
       @config[:client_id] = gets.chomp
 
       puts 'Enter owner\'s user ID (press enter for default) '
-      @config[:owner_id] = gets.chomp.to_i
-      @config[:owner_id] = 221687578997424129 if @config[:owner_id].empty?
+      owner_id = gets.chomp
+      @config[:owner_id] = owner_id.empty? ? 221687578997424129 : owner_id.to_i
     end
 
     def save_configurations
