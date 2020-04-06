@@ -36,12 +36,15 @@ module Steven
       "Action added"
     end
 
-    def increment_affirmation
-      @affirmation_counter += 1
+    def increment(action)
+      ivar_name = "@#{action}_counter"
+
+      val = instance_variable_get(ivar_name) || 0
+      instance_variable_set(ivar_name, val + 1)
     end
 
     def trigger_affirmation?
-      @affirmation_counter == @affirmation_trigger
+      @affirm_counter == @affirmation_trigger
     end
 
     def increment_haze
@@ -71,7 +74,7 @@ module Steven
 
       case action
       when :affirm
-        @affirmation_trigger - @affirmation_counter
+        @affirmation_trigger - @affirm_counter
       when :haze
         @haze_trigger - @haze_counter
       end
@@ -82,7 +85,6 @@ module Steven
     def initialize_action(action)
       case action
       when :affirm
-        @affirmation_counter = 0
         @affirmation_trigger = random_trigger
       when :haze
         @haze_counter = 0
