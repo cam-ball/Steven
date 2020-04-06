@@ -6,7 +6,7 @@ General purpose Discord bot for morale improvement.
 
 ### Usage
 ---
-1. Install ruby 2.4.1
+1. Install ruby 2.7.0
 2. Fork the repo
 3. Clone the fork
 4. Use [bundler](https://bundler.io/) to install dependencies with `bundle install`
