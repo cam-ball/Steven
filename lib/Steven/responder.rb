@@ -7,9 +7,9 @@ module Steven
 
       if user
         if user.action_exists?(action)
-          user.increment(:affirm)
+          user.increment(action)
 
-          if user.trigger_affirmation?
+          if user.trigger?(action)
             user.reset_action(action)
             event.respond responses.sample
           end
