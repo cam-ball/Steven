@@ -47,11 +47,15 @@ module Steven
 
     def self.lookup_user_by_server_id(user_info, server_id)
       if user_info.to_i.positive?
-        BOT.servers[server_id].users.select { |u| u.id == user_info.to_i }
-      else
-        BOT.servers[server_id].users.select do |u|
-          u.username == user_info || u.nickname == user_info
-        end
+        users = BOT.servers[server_id].users.select { |u| u.id == user_info.to_i }
+      end
+
+      # if a user with a matching ID exists return, otherwise
+      # check if the integer provided actually the username or nickname
+      return users unless users.empty?
+
+      BOT.servers[server_id].users.select do |u|
+        u.username == user_info || u.nickname == user_info
       end
     end
 
