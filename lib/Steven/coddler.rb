@@ -3,23 +3,10 @@ module Steven
   module Coddler
     extend Discordrb::EventContainer
 
-    @affirmations = YAML.load_file("#{Dir.pwd}/data/affirmations.yml")
+    affirmations = YAML.load_file("#{Dir.pwd}/data/affirmations.yml")
 
     message do |event|
-      author_id = event.author.id
-
-      user = USER_LIST.find_user_by_id(author_id)
-
-      if user
-        if user.action_exists?(:affirm)
-          user.increment_affirmation
-
-          if user.trigger_affirmation?
-            user.reset_action(:affirm)
-            event.respond @affirmations.sample
-          end
-        end
-      end
+      Steven::Responder.call(event, :affirm, affirmations)
     end
   end
 end
