@@ -4,16 +4,9 @@ require 'pry'
 
 # Base class housing all data and modules for Steven
 module Steven
-  require_relative 'Steven/admin'
-  require_relative 'Steven/coddler'
-  require_relative 'Steven/config'
-  require_relative 'Steven/greeter'
-  require_relative 'Steven/hazer'
-  require_relative 'Steven/reply_to_mention'
-  require_relative 'Steven/info'
-  require_relative 'Steven/retaliator'
-  require_relative 'Steven/user_management'
-  require_relative 'Steven/user'
+  Dir.glob('Steven/**/*.rb', base: 'lib').each do |file|
+    require_relative file.gsub("\.rb", "")
+  end
 
   CONFIG = Config.new
   USER_LIST = UserManagement.new
