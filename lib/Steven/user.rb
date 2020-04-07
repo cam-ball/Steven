@@ -28,7 +28,7 @@ module Steven
         return "Requested action '#{action}' not defined"
       end
 
-      unless action_exists?(action)
+      unless action_permitted?(action)
         @actions << action
         initialize_action(action)
       end
@@ -37,66 +37,51 @@ module Steven
     end
 
     def increment(action)
-      ivar_name = "@#{action}_counter"
-
-      val = instance_variable_get(ivar_name) || 0
-      instance_variable_set(ivar_name, val + 1)
+      val = instance_variable_get(counter(action)) || 0
+      instance_variable_set(counter(action), val + 1)
     end
 
     def trigger?(action)
-      counter_name = "@#{action}_counter"
-      trigger_name = "@#{action}_trigger"
-      instance_variable_get(counter_name) == instance_variable_get(trigger_name)
-    end
-
-    def increment_haze
-      @haze_counter += 1
-    end
-
-    def trigger_haze?
-      @haze_counter == @haze_trigger
+      instance_variable_get(counter(action)) ==
+        instance_variable_get(trigger(action))
     end
 
     def reset_action(action)
-      action = action.to_sym
-
-      unless ALLOWED_ACTIONS.include?(action) && action_exists?(action)
+      unless ALLOWED_ACTIONS.include?(action) && action_permitted?(action)
         return "Requested action '#{action}' not defined"
       end
 
       initialize_action(action)
     end
 
-    def action_exists?(action)
+    def action_permitted?(action)
       @actions.include?(action)
     end
 
     def messages_until?(action)
-      return unless action_exists?(action)
+      return unless action_permitted?(action)
 
-      case action
-      when :affirm
-        @affirm_trigger - @affirm_counter
-      when :haze
-        @haze_trigger - @haze_counter
-      end
+      instance_variable_get(trigger(action)) -
+        instance_variable_get(counter(action))
     end
 
     private
 
     def initialize_action(action)
-      case action
-      when :affirm
-        @affirm_counter = 0
-        @affirm_trigger = random_trigger
-      when :haze
-        @haze_counter = 0
-        @haze_trigger = random_trigger
-      end
+      instance_variable_set(counter(action), 0)
+      instance_variable_set(trigger(action), random_trigger)
+    end
+
+    def counter(action)
+      "@#{action}_counter"
+    end
+
+    def trigger(action)
+      "@#{action}_trigger"
     end
 
     def random_trigger
-      Random.rand(10..30)
+      Random.rand(5..10)
     end
   end
 end
