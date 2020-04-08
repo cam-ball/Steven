@@ -7,9 +7,9 @@ module Steven
     message do |event|
       if event.content.include?(CONFIG.client_id)
         user = event.author
-        event.respond("#{user.mention} WADUP WADUP WADUP")
+        event.respond("You rang, #{user.mention}?")
       end
     end
   end
 end
-  
+
