@@ -18,6 +18,8 @@ module Steven
     end
 
     def action_list_s
+      return if @actions.empty?
+
       @actions.join(", ")
     end
 
