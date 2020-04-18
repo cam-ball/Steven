@@ -6,7 +6,6 @@ module Steven
     extend Discordrb::Commands::CommandContainer
 
     command(:display, description: 'Show relevant user information') do |event, user_info|
-
       server_users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
 
       if server_users.size > 1

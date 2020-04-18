@@ -11,8 +11,8 @@ module Steven
         `!addaction approve Steven`
       DESC
     ) do |event, action, *user_info|
-      user_info = user_info.join(" ")
-      if event.author.id == CONFIG.owner_id
+      authorize_admin(event) do
+        user_info = user_info.join(" ")
         unless user_info && action
           event.respond "Please provide a valid user name or ID and action"
         end
@@ -35,8 +35,6 @@ module Steven
 
           event.respond UserManagement.add_user_and_action(new_user, action)
         end
-      else
-        event.respond "Only my owner is allowed to run this command"
       end
     end
 
@@ -49,9 +47,8 @@ module Steven
         `!removeaction approve Steven`
       DESC
     ) do |event, action, *user_info|
-
-      user_info = user_info.join(" ")
-      if event.author.id == CONFIG.owner_id
+      authorize_admin(event) do
+        user_info = user_info.join(" ")
         unless user_info && action
           event.respond "Please provide a valid user name or ID and action"
         end
@@ -68,15 +65,19 @@ module Steven
 
           event.respond user.remove_action(action)
         end
-      else
-        event.respond "Only my owner is allowed to run this command"
       end
     end
 
     command(:savedata, description: 'Manually saves user data to user data file') do |event|
-      if event.author.id == CONFIG.owner_id
+      authorize_admin(event) do
         USER_LIST.save_user_data
         event.respond "User file updated"
+      end
+    end
+
+    def self.authorize_admin(event)
+      if event.author.id == CONFIG.owner_id
+        yield
       else
         event.respond "Only my owner is allowed to run this command"
       end
