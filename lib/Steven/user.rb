@@ -36,6 +36,22 @@ module Steven
       "Action added"
     end
 
+    def remove_action(action)
+      action = action.to_sym
+
+      unless ALLOWED_ACTIONS.include?(action)
+        return "Requested action '#{action}' not defined"
+      end
+
+      if action_permitted?(action)
+        @actions.delete(action)
+        remove_instance_variable(counter(action))
+        remove_instance_variable(trigger(action))
+      end
+
+      "Action removed"
+    end
+
     def increment(action)
       val = instance_variable_get(counter(action)) || 0
       instance_variable_set(counter(action), val + 1)

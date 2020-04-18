@@ -2,17 +2,9 @@ module Steven
   # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
-    command(:addaction, description: <<-DESC
-      Instruct Steven to begin tracking a user
-      actions:
-        affirm, haze
-      user_info can be a user ID or username
-      usage:
-        `!addaction approve Steven`
-      DESC
-    ) do |event, action, *user_info|
-      user_info = user_info.join(" ")
-      if event.author.id == CONFIG.owner_id
+    command(:addaction, description: I18n.t('addaction.description')) do |event, action, *user_info|
+      authorize_admin(event) do
+        user_info = user_info.join(" ")
         unless user_info && action
           event.respond "Please provide a valid user name or ID and action"
         end
@@ -35,15 +27,41 @@ module Steven
 
           event.respond UserManagement.add_user_and_action(new_user, action)
         end
-      else
-        event.respond "Only my owner is allowed to run this command"
       end
     end
 
-    command(:savedata, description: 'Manually saves user data to user data file') do |event|
-      if event.author.id == CONFIG.owner_id
+    command(:removeaction, description: I18n.t('removeaction.description')) do |event, action, *user_info|
+      authorize_admin(event) do
+        user_info = user_info.join(" ")
+        unless user_info && action
+          event.respond "Please provide a valid user name or ID and action"
+        end
+        action = action.to_sym
+
+        users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+
+        if users.size > 1
+          event.respond 'Username is not unique, try using an ID'
+        elsif users.size.zero?
+          event.respond 'User cannot be found on this server'
+        else
+          user = USER_LIST.find_user_by_id(users.first.id)
+
+          event.respond user.remove_action(action)
+        end
+      end
+    end
+
+    command(:savedata, description: I18n.t('savedata.description')) do |event|
+      authorize_admin(event) do
         USER_LIST.save_user_data
         event.respond "User file updated"
+      end
+    end
+
+    def self.authorize_admin(event)
+      if event.author.id == CONFIG.owner_id
+        yield
       else
         event.respond "Only my owner is allowed to run this command"
       end

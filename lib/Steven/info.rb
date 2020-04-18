@@ -5,8 +5,7 @@ module Steven
   class Info
     extend Discordrb::Commands::CommandContainer
 
-    command(:display, description: 'Show relevant user information') do |event, user_info|
-
+    command(:display, description: I18n.t('display.description')) do |event, user_info|
       server_users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
 
       if server_users.size > 1
@@ -23,7 +22,10 @@ module Steven
           embed.timestamp = Time.at(1538788488)
 
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: server_user.avatar_url)
-          embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'Is that right?', icon_url: BOT.profile.avatar_url)
+          embed.footer = Discordrb::Webhooks::EmbedFooter.new(
+            text: I18n.t('display.embed.footer'),
+            icon_url: BOT.profile.avatar_url,
+          )
 
           embed.add_field(name: 'Username', value: server_user.username)
           embed.add_field(name: 'Configured actions', value: steven_user&.action_list_s || 'None... yet.')
