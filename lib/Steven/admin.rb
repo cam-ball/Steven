@@ -40,6 +40,39 @@ module Steven
       end
     end
 
+    command(:removeaction, description: <<-DESC
+      Instruct Steven to stop tracking a user
+      actions:
+        affirm, haze
+      user_info can be a user ID or username
+      usage:
+        `!removeaction approve Steven`
+      DESC
+    ) do |event, action, *user_info|
+
+      user_info = user_info.join(" ")
+      if event.author.id == CONFIG.owner_id
+        unless user_info && action
+          event.respond "Please provide a valid user name or ID and action"
+        end
+        action = action.to_sym
+
+        users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+
+        if users.size > 1
+          event.respond 'Username is not unique, try using an ID'
+        elsif users.size.zero?
+          event.respond 'User cannot be found on this server'
+        else
+          user = USER_LIST.find_user_by_id(users.first.id)
+
+          event.respond user.remove_action(action)
+        end
+      else
+        event.respond "Only my owner is allowed to run this command"
+      end
+    end
+
     command(:savedata, description: 'Manually saves user data to user data file') do |event|
       if event.author.id == CONFIG.owner_id
         USER_LIST.save_user_data

@@ -43,7 +43,7 @@ module Steven
         return "Requested action '#{action}' not defined"
       end
 
-      unless action_permitted?(action)
+      if action_permitted?(action)
         @actions.delete(action)
         remove_instance_variable(counter(action))
         remove_instance_variable(trigger(action))
