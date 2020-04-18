@@ -19,7 +19,7 @@ module Steven
         event.channel.send_embed do |embed|
           embed.title = server_user.nickname || server_user.username
           embed.colour = 0xcfeff4
-          embed.timestamp = Time.at(1538788488)
+          embed.timestamp = Time.now
 
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: server_user.avatar_url)
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(
