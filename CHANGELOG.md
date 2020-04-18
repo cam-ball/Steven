@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Unreleased
+#### Fixed
+- Fixed issue with `!display` command not working for users with no configured actions ([#36](https://github.com/laurenball/Steven/pull/36))
 
 ### 2020-04-18
 #### Added
