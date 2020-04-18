@@ -3,22 +3,35 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
-## Unreleased
-- Update ruby version from 2.4.1 -> 2.6.0
+### Unreleased
+
+### 2020-04-18
+#### Added
+- Add `!removeaction` command to remove actions from configured users ([33](https://github.com/laurenball/Steven/pull/33))
+
+### 2020-04-06
+#### Added
+- Add new affirmation phrases ([#32](https://github.com/laurenball/Steven/pull/32))
+- Add new haze phrases ([#32](https://github.com/laurenball/Steven/pull/32))
+
+#### Changed
+- Update ruby version from 2.4.1 -> 2.6.0 ([#31](https://github.com/laurenball/Steven/pull/31))
+- Change to dynamic file requirement ([#32](https://github.com/laurenball/Steven/pull/32))
+- Generalize trigger and counter methods for affirming and hazing ([#32](https://github.com/laurenball/Steven/pull/32))
 
 ### 2018-10-05
 #### Added
  - Add username support to user managment ([#16](https://github.com/laurenball/Steven/pull/16)) 
 
 ### 2018-06-24
-#### Updated
+#### Changed
  - Remove adduser action and update addaction ([#11](https://github.com/laurenball/Steven/pull/11)) 
 
 #### Added
  - Hazing module ([#13](https://github.com/laurenball/Steven/pull/13)) 
 
 ### 2018-06-22
-#### Updated
+#### Changed
  - Bundler dependency installation documentation to README ([README.md](https://github.com/laurenball/Steven/blob/master/README.md))
 
 ### 2018-05-30
@@ -27,5 +40,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
  - New changelog (:eyes:)
  - Handsome picture
 
-#### Updated
+#### Changed
  - Spruce up README ([README.md](https://github.com/laurenball/Steven/blob/master/README.md))
