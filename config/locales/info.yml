@@ -1,0 +1,5 @@
+en:
+  display:
+    description: Show user information, including configured triggers and progress towards next trigger
+    embed:
+      footer: Is that right?

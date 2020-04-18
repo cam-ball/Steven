@@ -2,15 +2,7 @@ module Steven
   # Commands available to the user set as `owner_id` in config.yml
   module Admin
     extend Discordrb::Commands::CommandContainer
-    command(:addaction, description: <<-DESC
-      Instruct Steven to begin tracking a user
-      actions:
-        affirm, haze
-      user_info can be a user ID or username
-      usage:
-        `!addaction approve Steven`
-      DESC
-    ) do |event, action, *user_info|
+    command(:addaction, description: I18n.t('addaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
         unless user_info && action
@@ -38,15 +30,7 @@ module Steven
       end
     end
 
-    command(:removeaction, description: <<-DESC
-      Instruct Steven to stop tracking a user
-      actions:
-        affirm, haze
-      user_info can be a user ID or username
-      usage:
-        `!removeaction approve Steven`
-      DESC
-    ) do |event, action, *user_info|
+    command(:removeaction, description: I18n.t('removeaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
         unless user_info && action
@@ -68,7 +52,7 @@ module Steven
       end
     end
 
-    command(:savedata, description: 'Manually saves user data to user data file') do |event|
+    command(:savedata, description: I18n.t('savedata.description')) do |event|
       authorize_admin(event) do
         USER_LIST.save_user_data
         event.respond "User file updated"

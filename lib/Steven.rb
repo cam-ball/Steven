@@ -1,9 +1,13 @@
 require 'discordrb'
 require 'yaml'
 require 'pry'
+require 'i18n'
 
 # Base class housing all data and modules for Steven
 module Steven
+  I18n.config.available_locales = :en
+  I18n.load_path << Dir[File.expand_path("config/locales") + "/*.yml"]
+
   Dir.glob('Steven/**/*.rb', base: 'lib').each do |file|
     require_relative file.gsub("\.rb", "")
   end

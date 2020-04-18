@@ -4,6 +4,7 @@ gem 'discordrb'
 gem 'pry'
 gem 'rake'
 gem 'rspec'
+gem 'i18n'
 
 group :development do
   gem 'rubocop'
