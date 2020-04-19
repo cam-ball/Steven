@@ -8,7 +8,7 @@ module Steven
   I18n.config.available_locales = :en
   I18n.load_path << Dir[File.expand_path("config/locales") + "/*.yml"]
 
-  Dir.glob('Steven/**/*.rb', base: 'lib').each do |file|
+  Dir.glob('steven/**/*.rb', base: 'lib').each do |file|
     require_relative file.gsub("\.rb", "")
   end
 
@@ -34,5 +34,5 @@ module Steven
     USER_LIST.save_user_data
   end
 
-  BOT.run
+  BOT.run unless ENV['test'] == 'true'
 end
