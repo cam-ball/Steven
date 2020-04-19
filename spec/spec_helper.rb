@@ -1,7 +1,7 @@
 ENV['test'] = 'true'
 
 require "bundler/setup"
-require "Steven"
+require "steven"
 require 'support/discord_helpers'
 
 RSpec.configure do |config|
