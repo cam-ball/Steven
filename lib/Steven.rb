@@ -34,5 +34,5 @@ module Steven
     USER_LIST.save_user_data
   end
 
-  BOT.run
+  BOT.run unless ENV['test'] == 'true'
 end
