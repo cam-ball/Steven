@@ -7,12 +7,12 @@ end
 module DiscordHelper
   def dispatch(klass, event)
     allow(event).to receive(:"is_a?").with(klass).and_return(true)
-    Steven.event_handlers[klass].each do |handler|
+    Steven::BOT.event_handlers[klass].each do |handler|
       handler.match(event)
     end
   end
 
-  def message_event(content:, author_id:, server_id:)
+  def message_event(content:, author_id: 1, server_id: 1)
     double("event",
       content: content,
       channel: double("channel", "private?": false),
