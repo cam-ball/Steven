@@ -3,43 +3,47 @@
 require 'spec_helper'
 
 RSpec.describe Steven::Greeter do
-  let(:event) { message_event(content: message_val) }
+  it { expect(described_class).to be_a Discordrb::EventContainer }
 
-  context 'hello' do
-    let(:message_val) { 'hello' }
+  context 'event response' do
+    let(:event) { message_event(content: message_val) }
 
-    it do
-      expect(event).to receive(:respond).with 'Greetings!'
-      dispatch(Discordrb::Events::MessageEvent, event)
-    end
+    context 'hello' do
+      let(:message_val) { 'hello' }
 
-    context 'case-agnostic substring' do
-      let(:message_val) { '~HELLO~' }
-
-      it 'is case-agnostic' do
+      it do
         expect(event).to receive(:respond).with 'Greetings!'
         dispatch(Discordrb::Events::MessageEvent, event)
       end
+
+      context 'case-agnostic substring' do
+        let(:message_val) { '~HELLO~' }
+
+        it 'is case-agnostic' do
+          expect(event).to receive(:respond).with 'Greetings!'
+          dispatch(Discordrb::Events::MessageEvent, event)
+        end
+      end
     end
-  end
 
-  context 'bye' do
-    let(:message_val) { 'bye' }
-    it do
-      expect(event).to receive(:respond)
-        .with('I suppose this is good-bye for now.')
-
-      dispatch(Discordrb::Events::MessageEvent, event)
-    end
-
-    context 'case-agnostic substring' do
-      let(:message_val) { 'BYE~' }
-
-      it 'is case-agnostic' do
+    context 'bye' do
+      let(:message_val) { 'bye' }
+      it do
         expect(event).to receive(:respond)
           .with('I suppose this is good-bye for now.')
 
         dispatch(Discordrb::Events::MessageEvent, event)
+      end
+
+      context 'case-agnostic substring' do
+        let(:message_val) { 'BYE~' }
+
+        it 'is case-agnostic' do
+          expect(event).to receive(:respond)
+            .with('I suppose this is good-bye for now.')
+
+          dispatch(Discordrb::Events::MessageEvent, event)
+        end
       end
     end
   end

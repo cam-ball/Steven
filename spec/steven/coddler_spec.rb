@@ -3,17 +3,21 @@
 require 'spec_helper'
 
 RSpec.describe Steven::Coddler do
-  let(:event) { message_event(content: 'any ole thing') }
-  let(:affirmations) do
-    YAML.load_file("#{Dir.pwd}/data/affirmations.yml")
-  end
+  it { expect(described_class).to be_a Discordrb::EventContainer }
 
-  before { allow(Steven::Responder).to receive(:call) }
+  context 'event response' do
+    let(:event) { message_event(content: 'any ole thing') }
+    let(:affirmations) do
+      YAML.load_file("#{Dir.pwd}/data/affirmations.yml")
+    end
 
-  it do
-    dispatch(Discordrb::Events::MessageEvent, event)
+    before { allow(Steven::Responder).to receive(:call) }
 
-    expect(Steven::Responder).to have_received(:call).once
-      .with(event, :affirm, affirmations)
+    it do
+      dispatch(Discordrb::Events::MessageEvent, event)
+
+      expect(Steven::Responder).to have_received(:call).once
+        .with(event, :affirm, affirmations)
+    end
   end
 end
