@@ -3,12 +3,16 @@ AllCops:
   Exclude:
       - 'data/*'
 
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+Performance/Casecmp:
+  Enabled: true
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/NumericLiterals:
   Enabled: False
 Style/StringLiterals:
   Enabled: false
-
-Performance/Casecmp:
-  Enabled: true

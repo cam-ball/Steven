@@ -18,6 +18,8 @@ module Steven
     end
 
     def action_list_s
+      return if @actions.empty?
+
       @actions.join(", ")
     end
 
@@ -97,7 +99,7 @@ module Steven
     end
 
     def random_trigger
-      Random.rand(10..30)
+      Random.rand(30..50)
     end
   end
 end
