@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 #### Added
 - Added automated testing for select response events ([#40](https://github.com/laurenball/Steven/pull/40))
 
+#### Changed
+- Changed minimum response threshold to 30 messages (was previously 10) ([#43](https://github.com/laurenball/Steven/pull/43))
+- Changed maxiumum response threshold to 50 messages (was previously 30) ([#43](https://github.com/laurenball/Steven/pull/43))
+
 #### Fixed
 - Fixed issue with `!display` command not working for users with no configured actions ([#36](https://github.com/laurenball/Steven/pull/36))
 
