@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Unreleased
+
+### 2020-04-30
 #### Added
 - Added automated testing for select response events ([#40](https://github.com/laurenball/Steven/pull/40))
 
