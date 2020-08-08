@@ -5,8 +5,10 @@ module Steven
   class Info
     extend Discordrb::Commands::CommandContainer
 
-    command(:display, description: I18n.t('display.description')) do |event, user_info|
+    command(:display, description: I18n.t('display.description')) do |event, *user_info|
+      user_info = user_info.join(" ")
       server_id = event.server.id
+
       server_users = UserManager.lookup_user_by_server_id(user_info, server_id)
 
       if server_users.size > 1
