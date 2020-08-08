@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Unreleased
+#### Added
+- Added Travis CI integration ([#45](https://github.com/laurenball/Steven/pull/45))
+- Added dotenv for secret and environment varaible managment ([#45](https://github.com/laurenball/Steven/pull/45))
+
+#### Updated
+- Updated README and CONTRIBUTING guidelines ([#45](https://github.com/laurenball/Steven/pull/45))
+
+#### Fixed
+- Fixed inaccurate help text for `!addaction` and `!removeaction` ([#45](https://github.com/laurenball/Steven/pull/45))
+- Fixed cross-server user tracking; Users are now tracked on a per-server basis. ([#44](https://github.com/laurenball/Steven/pull/44))
+
+#### Removed
+- Removed support for adding Discord tokens via yaml file ([#45](https://github.com/laurenball/Steven/pull/45))
 
 ### 2020-04-30
 #### Added

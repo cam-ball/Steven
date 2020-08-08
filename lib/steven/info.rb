@@ -6,7 +6,8 @@ module Steven
     extend Discordrb::Commands::CommandContainer
 
     command(:display, description: I18n.t('display.description')) do |event, user_info|
-      server_users = UserManager.lookup_user_by_server_id(user_info, event.server.id)
+      server_id = event.server.id
+      server_users = UserManager.lookup_user_by_server_id(user_info, server_id)
 
       if server_users.size > 1
         event.respond 'Username is not unique, try using an ID'
@@ -14,7 +15,7 @@ module Steven
         event.respond 'User cannot be found on this server'
       else
         server_user = server_users.first
-        steven_user = USER_LIST.find_user_by_id(server_user.id)
+        steven_user = USER_LIST.find_user_by_id_and_server(server_user.id, server_id)
 
         event.channel.send_embed do |embed|
           embed.title = server_user.nickname || server_user.username
@@ -31,8 +32,16 @@ module Steven
           embed.add_field(name: 'Configured actions', value: steven_user&.action_list_s || 'None... yet.')
 
           if steven_user
-            embed.add_field(name: 'Messages until affirmation', value: steven_user.messages_until?(:affirm) || 'N/A', inline: true)
-            embed.add_field(name: "Messages until haze", value: steven_user.messages_until?(:haze) || 'N/A', inline: true)
+            embed.add_field(
+              name: 'Messages until affirmation',
+              value: steven_user.messages_until?(:affirm) || 'N/A',
+              inline: true,
+            )
+            embed.add_field(
+              name: "Messages until haze",
+              value: steven_user.messages_until?(:haze) || 'N/A',
+              inline: true,
+            )
           end
         end
       end

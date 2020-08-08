@@ -22,8 +22,8 @@ RSpec.describe Steven::UserManager do
       let!(:server_id_val) { 3 }
 
       it 'adds a new user entry' do
-        expect{user_manager.add_user(new_user)}
-          .to change{user_manager.users.count}
+        expect { user_manager.add_user(new_user) }
+          .to change { user_manager.users.count }
           .from(3).to(4)
       end
     end
@@ -32,8 +32,8 @@ RSpec.describe Steven::UserManager do
       let!(:server_id_val) { existing_user.server_id }
 
       it 'adds a new user entry' do
-        expect{user_manager.add_user(new_user)}
-          .to_not change{user_manager.users.count}
+        expect { user_manager.add_user(new_user) }
+          .to_not change { user_manager.users.count }
       end
     end
   end

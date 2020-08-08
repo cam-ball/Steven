@@ -3,11 +3,11 @@ en:
     description: | 
       Instruct Steven to begin tracking a user. Accepts a user ID, nickname, or username
         available actions: affirm, haze
-        usage: `!addaction approve Steven`
+        usage: `!addaction haze Steven`
   removeaction: 
     description: | 
       Instruct Steven to stop tracking a user. Accepts a user ID, nickname, or username
         available actions: affirm, haze
-        usage: `!removeaction approve Steven`
+        usage: `!removeaction affirm Steven`
   savedata: 
     description: Manually saves user data to user data file
