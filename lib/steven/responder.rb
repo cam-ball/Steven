@@ -2,8 +2,9 @@ module Steven
   class Responder
     def self.call(event, action, responses)
       author_id = event.author.id
+      server_id = event.server.id
 
-      user = USER_LIST.find_user_by_id(author_id)
+      user = USER_LIST.find_user_by_id_and_server(author_id, server_id)
 
       if user
         if user.action_permitted?(action)

@@ -13,7 +13,7 @@ module Steven
   end
 
   CONFIG = Config.new
-  USER_LIST = UserManagement.new
+  USER_LIST = UserManager.new
 
   BOT = Discordrb::Commands::CommandBot.new(token: CONFIG.discord_token,
                                             client_id: CONFIG.client_id,
