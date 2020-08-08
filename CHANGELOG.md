@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Updated README and CONTRIBUTING guidelines ([#45](https://github.com/laurenball/Steven/pull/45))
 
 #### Fixed
+- Fixed user info loading error when attempting to display information for a user with whitespace in nickname ([#46](https://github.com/laurenball/Steven/pull/46))
 - Fixed inaccurate help text for `!addaction` and `!removeaction` ([#45](https://github.com/laurenball/Steven/pull/45))
 - Fixed cross-server user tracking; Users are now tracked on a per-server basis. ([#44](https://github.com/laurenball/Steven/pull/44))
 
