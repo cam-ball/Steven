@@ -7,3 +7,4 @@ install:
   - ./rubocop-travis/install.sh
 script:
   - ./rubocop-travis/scan.sh
+  - rspec
