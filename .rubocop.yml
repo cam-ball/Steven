@@ -6,10 +6,7 @@ AllCops:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*'
-Performance/Casecmp:
-  Enabled: true
+  Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/NumericLiterals:
