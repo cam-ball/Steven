@@ -6,7 +6,7 @@ module Steven
     def initialize
       self.discord_token = ENV['DISCORD_TOKEN']
       self.client_id = ENV['CLIENT_ID']
-      self.owner_id = ENV['OWNER_ID']
+      self.owner_id = ENV['OWNER_ID'].to_i
       return if discord_token && client_id && owner_id
 
       read_discord_configurations
