@@ -1,7 +1,7 @@
 module Steven
   # User class containing all data for any individual configured by owner
   class User
-    attr_accessor :actions, :server_id, :user_id, :username, :nicnkname
+    attr_accessor :actions, :server_id, :user_id, :username, :nickname
 
     ALLOWED_ACTIONS = %i[affirm haze].freeze
 

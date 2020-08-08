@@ -27,10 +27,6 @@ module Steven
       end.first
     end
 
-    def find_user_by_username(username)
-      @users.select { |usr| usr.username == username }.first
-    end
-
     def add_action(new_user, action)
       user = find_user_by_id_and_server(new_user.user_id, new_user.server_id)
 
