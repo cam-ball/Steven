@@ -1,4 +1,9 @@
 language: ruby
 rvm:
  - 2.6
- - jruby
+before_install:
+  - git clone https://github.com/TravisToolbox/rubocop-travis.git
+install:
+  - ./rubocop-travis/install.sh
+script:
+  - ./rubocop-travis/scan.sh
