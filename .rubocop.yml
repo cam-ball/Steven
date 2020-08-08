@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
   Exclude:
       - 'data/*'
 
@@ -10,6 +10,11 @@ Metrics/BlockLength:
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/NumericLiterals:
-  Enabled: False
+  Enabled: false
 Style/StringLiterals:
   Enabled: false
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+

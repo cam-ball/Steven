@@ -7,9 +7,7 @@ module Steven
       @users = []
       @user_data_file = user_data_path || "#{Dir.pwd}/data/user_data.yml"
 
-      if File.exist?(@user_data_file)
-        file_contents = YAML.load_file(@user_data_file)
-      end
+      file_contents = YAML.load_file(@user_data_file) if File.exist?(@user_data_file)
 
       return unless file_contents.is_a?(Array) && !file_contents.empty?
 
@@ -18,6 +16,7 @@ module Steven
 
     def add_user(user)
       return if find_user_by_id_and_server(user.user_id, user.server_id)
+
       @users << user
     end
 
@@ -49,7 +48,7 @@ module Steven
       return users unless users.empty?
 
       BOT.servers[server_id].users.select do |u|
-        u.username == user_info || u.nickname == user_info
+        [u.username, u.nickname].include?(user_info)
       end
     end
 
@@ -61,6 +60,7 @@ module Steven
     end
 
     private
+
     attr_writer :users
   end
 end

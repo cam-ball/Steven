@@ -31,8 +31,16 @@ module Steven
           embed.add_field(name: 'Configured actions', value: steven_user&.action_list_s || 'None... yet.')
 
           if steven_user
-            embed.add_field(name: 'Messages until affirmation', value: steven_user.messages_until?(:affirm) || 'N/A', inline: true)
-            embed.add_field(name: "Messages until haze", value: steven_user.messages_until?(:haze) || 'N/A', inline: true)
+            embed.add_field(
+              name: 'Messages until affirmation',
+              value: steven_user.messages_until?(:affirm) || 'N/A',
+              inline: true,
+            )
+            embed.add_field(
+              name: "Messages until haze",
+              value: steven_user.messages_until?(:haze) || 'N/A',
+              inline: true,
+            )
           end
         end
       end

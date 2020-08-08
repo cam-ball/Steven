@@ -5,9 +5,9 @@ module Steven
     command(:addaction, description: I18n.t('addaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
-        unless user_info && action
-          event.respond "Please provide a valid user name or ID and action"
-        end
+
+        event.respond "Please provide a valid user name or ID and action" unless user_info && action
+
         action = action.to_sym
 
         discord_user = UserManager.lookup_user_by_server_id(user_info, event.server.id)
@@ -33,9 +33,9 @@ module Steven
     command(:removeaction, description: I18n.t('removeaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
-        unless user_info && action
-          event.respond "Please provide a valid user name or ID and action"
-        end
+
+        event.respond "Please provide a valid user name or ID and action" unless user_info && action
+
         action = action.to_sym
         server_id = event.server.id
 

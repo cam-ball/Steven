@@ -26,7 +26,7 @@ module Steven
   BOT.include!(Coddler)
   BOT.include!(Greeter)
   BOT.include!(Hazer)
-  BOT.include!(Reply_To_Mention)
+  BOT.include!(ReplyToMention)
   BOT.include!(Info)
   BOT.include!(Retaliator)
 
