@@ -3,7 +3,7 @@ rvm:
  - 2.6
 jobs:
   include:
-    - name: 'Test'  
+    - name: test  
       script: bundle exec rspec
-    - name: 'Rubocop'
+    - name: rubocop
       script: bundle exec rubocop

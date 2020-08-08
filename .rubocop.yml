@@ -2,6 +2,7 @@ AllCops:
   TargetRubyVersion: 2.6
   Exclude:
       - 'data/*'
+      - 'vendor/**/*'
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
