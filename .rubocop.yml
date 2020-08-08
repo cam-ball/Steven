@@ -91,3 +91,5 @@ Style/SlicingWithRange:
   Enabled: true
 Style/StringConcatenation:
   Enabled: true
+Metrics/AbcSize:
+  Enabled: false

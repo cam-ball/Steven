@@ -2,6 +2,7 @@ require 'discordrb'
 require 'yaml'
 require 'pry'
 require 'i18n'
+require 'dotenv/load'
 
 # Base class housing all data and modules for Steven
 module Steven
@@ -34,5 +35,5 @@ module Steven
     USER_LIST.save_user_data
   end
 
-  BOT.run unless ENV['test'] == 'true'
+  BOT.run unless ENV['test']
 end
