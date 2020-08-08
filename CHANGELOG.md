@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Unreleased
+
+### 2020-08-08
 #### Added
 - Added Travis CI integration ([#45](https://github.com/laurenball/Steven/pull/45))
 - Added dotenv for secret and environment varaible managment ([#45](https://github.com/laurenball/Steven/pull/45))
