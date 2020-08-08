@@ -1,9 +1,11 @@
 module Steven
   # Wrapper class for general user management
-  class UserManagement
-    def initialize
+  class UserManager
+    attr_reader :users
+
+    def initialize(user_data_path = nil)
       @users = []
-      @user_data_file = "#{Dir.pwd}/data/user_data.yml"
+      @user_data_file = user_data_path || "#{Dir.pwd}/data/user_data.yml"
 
       if File.exist?(@user_data_file)
         file_contents = YAML.load_file(@user_data_file)
@@ -61,5 +63,8 @@ module Steven
       USER_LIST.add_user(new_user)
       USER_LIST.add_action(new_user, action)
     end
+
+    private
+    attr_writer :users
   end
 end

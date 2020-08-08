@@ -6,7 +6,7 @@ module Steven
     extend Discordrb::Commands::CommandContainer
 
     command(:display, description: I18n.t('display.description')) do |event, user_info|
-      server_users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+      server_users = UserManager.lookup_user_by_server_id(user_info, event.server.id)
 
       if server_users.size > 1
         event.respond 'Username is not unique, try using an ID'

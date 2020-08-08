@@ -10,7 +10,7 @@ module Steven
         end
         action = action.to_sym
 
-        discord_user = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+        discord_user = UserManager.lookup_user_by_server_id(user_info, event.server.id)
 
         if discord_user.size > 1
           event.respond 'Username is not unique, try using an ID'
@@ -25,7 +25,7 @@ module Steven
             nickname: user.nickname,
           )
 
-          event.respond UserManagement.add_user_and_action(new_user, action)
+          event.respond UserManager.add_user_and_action(new_user, action)
         end
       end
     end
@@ -39,7 +39,7 @@ module Steven
         action = action.to_sym
         server_id = event.server.id
 
-        discord_users = UserManagement.lookup_user_by_server_id(user_info, server_id)
+        discord_users = UserManager.lookup_user_by_server_id(user_info, server_id)
 
         if discord_users.size > 1
           event.respond 'Username is not unique, try using an ID'
