@@ -1,9 +1,8 @@
-# Steven
+# Steven [![Build Status](https://travis-ci.org/laurenball/Steven.svg?branch=develop)](https://travis-ci.org/github/laurenball/Steven)
 ---
 *with a 'v'*  
 
-General purpose Discord bot for morale improvement.
-
+Discord bot for morale improvement.
 ### Usage
 ---
 1. Install ruby 2.6.0
@@ -22,7 +21,6 @@ General purpose Discord bot for morale improvement.
   - Follows owner-selected users and occasionally showers them with praise
 - General interaction:
   - Listens for 'hello' and 'bye' and responds accordingly
-  - Defends his honor against anyone who is a 'dum bitch'
 
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization
