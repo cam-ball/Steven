@@ -1,10 +1,9 @@
 language: ruby
 rvm:
  - 2.6
-before_install:
-  - git clone https://github.com/TravisToolbox/rubocop-travis.git
-install:
-  - ./rubocop-travis/install.sh
-script:
-  - ./rubocop-travis/scan.sh
-  - rspec
+jobs:
+  include:
+    - name: 'Test'  
+      script: bundle exec rspec
+    - name: 'Rubocop'
+      script: bundle exec rubocop
