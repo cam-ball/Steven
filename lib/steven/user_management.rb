@@ -15,12 +15,14 @@ module Steven
     end
 
     def add_user(user)
-      return if user_exists?(user.user_id)
+      return if find_user_by_id_and_server(user.user_id, user.server_id)
       @users << user
     end
 
-    def find_user_by_id(user_id)
-      @users.select { |usr| usr.user_id == user_id }.first
+    def find_user_by_id_and_server(user_id, server_id)
+      @users.select do |user|
+        user.user_id == user_id && user.server_id == server_id
+      end.first
     end
 
     def find_user_by_username(username)
@@ -28,15 +30,11 @@ module Steven
     end
 
     def add_action(new_user, action)
-      user = @users.select { |usr| usr.user_id == new_user.user_id }.first
+      user = find_user_by_id_and_server(new_user.user_id, new_user.server_id)
 
       return unless user
 
       user.add_action(action)
-    end
-
-    def user_exists?(user_id)
-      @users.select { |usr| usr.user_id == user_id }.any?
     end
 
     def save_user_data
