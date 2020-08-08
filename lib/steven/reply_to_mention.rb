@@ -1,6 +1,6 @@
 module Steven
   # Replies to mentions
-  module Reply_To_Mention
+  module ReplyToMention
     require_relative 'config'
     extend Discordrb::EventContainer
 
@@ -12,4 +12,3 @@ module Steven
     end
   end
 end
-

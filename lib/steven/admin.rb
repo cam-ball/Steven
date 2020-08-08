@@ -5,27 +5,27 @@ module Steven
     command(:addaction, description: I18n.t('addaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
-        unless user_info && action
-          event.respond "Please provide a valid user name or ID and action"
-        end
+
+        event.respond "Please provide a valid user name or ID and action" unless user_info && action
+
         action = action.to_sym
 
-        users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+        discord_user = UserManager.lookup_user_by_server_id(user_info, event.server.id)
 
-        if users.size > 1
+        if discord_user.size > 1
           event.respond 'Username is not unique, try using an ID'
-        elsif users.size.zero?
+        elsif discord_user.size.zero?
           event.respond 'User cannot be found on this server'
         else
-          user = users.first
+          user = discord_user.first
           new_user = User.new(
             server_id: event.server.id,
             user_id: user.id,
             username: user.username,
-            nickname: user.nickname
+            nickname: user.nickname,
           )
 
-          event.respond UserManagement.add_user_and_action(new_user, action)
+          event.respond UserManager.add_user_and_action(new_user, action)
         end
       end
     end
@@ -33,19 +33,21 @@ module Steven
     command(:removeaction, description: I18n.t('removeaction.description')) do |event, action, *user_info|
       authorize_admin(event) do
         user_info = user_info.join(" ")
-        unless user_info && action
-          event.respond "Please provide a valid user name or ID and action"
-        end
+
+        event.respond "Please provide a valid user name or ID and action" unless user_info && action
+
         action = action.to_sym
+        server_id = event.server.id
 
-        users = UserManagement.lookup_user_by_server_id(user_info, event.server.id)
+        discord_users = UserManager.lookup_user_by_server_id(user_info, server_id)
 
-        if users.size > 1
+        if discord_users.size > 1
           event.respond 'Username is not unique, try using an ID'
-        elsif users.size.zero?
+        elsif discord_users.size.zero?
           event.respond 'User cannot be found on this server'
         else
-          user = USER_LIST.find_user_by_id(users.first.id)
+          discord_user_id = discord_users.first.id
+          user = USER_LIST.find_user_by_id_and_server(discord_user_id, server_id)
 
           event.respond user.remove_action(action)
         end

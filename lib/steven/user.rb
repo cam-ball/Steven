@@ -1,7 +1,7 @@
 module Steven
   # User class containing all data for any individual configured by owner
   class User
-    attr_accessor :actions, :server_id, :user_id, :username, :nicnkname
+    attr_accessor :actions, :server_id, :user_id, :username, :nickname
 
     ALLOWED_ACTIONS = %i[affirm haze].freeze
 
@@ -26,9 +26,7 @@ module Steven
     def add_action(action)
       action = action.to_sym
 
-      unless ALLOWED_ACTIONS.include?(action)
-        return "Requested action '#{action}' not defined"
-      end
+      return "Requested action '#{action}' not defined" unless ALLOWED_ACTIONS.include?(action)
 
       unless action_permitted?(action)
         @actions << action
@@ -41,9 +39,7 @@ module Steven
     def remove_action(action)
       action = action.to_sym
 
-      unless ALLOWED_ACTIONS.include?(action)
-        return "Requested action '#{action}' not defined"
-      end
+      return "Requested action '#{action}' not defined" unless ALLOWED_ACTIONS.include?(action)
 
       if action_permitted?(action)
         @actions.delete(action)

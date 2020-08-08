@@ -1,18 +1,18 @@
-# Steven
+# Steven [![Build Status](https://travis-ci.org/laurenball/Steven.svg?branch=develop)](https://travis-ci.org/github/laurenball/Steven)
 ---
 *with a 'v'*  
 
-General purpose Discord bot for morale improvement.
-
+Discord bot for morale improvement.
 ### Usage
 ---
 1. Install ruby 2.6.0
 2. Fork the repo
 3. Clone the fork
 4. Use [bundler](https://bundler.io/) to install dependencies with `bundle install`
-5. Run `ruby start.rb` in the project root
-6. Follow the instructions to configure Steven and create the environment files
+5. Create a Discord bot and enter tokens in `.env` (reference `data/example.env` for required fields)
  - [How to create a Discord bot and create an ID and token](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token)
+6. Run `ruby start.rb` in the project root
+7. Follow the provided link to invite Steven to your server
 
 ### Features
 ---
@@ -21,7 +21,6 @@ General purpose Discord bot for morale improvement.
   - Follows owner-selected users and occasionally showers them with praise
 - General interaction:
   - Listens for 'hello' and 'bye' and responds accordingly
-  - Defends his honor against anyone who is a 'dum bitch'
 
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization

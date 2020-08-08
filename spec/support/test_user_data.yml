@@ -1,0 +1,16 @@
+---
+- !ruby/object:Steven::User
+  user_id: 1
+  username: jeffy
+  nickname: 'good lil boy'
+  server_id: 1
+- !ruby/object:Steven::User
+  user_id: 2
+  username: pocky
+  nickname: 'pocky'
+  server_id: 1
+- !ruby/object:Steven::User
+  user_id: 1
+  username: jeffy
+  nickname: 'just a bastard'
+  server_id: 2
