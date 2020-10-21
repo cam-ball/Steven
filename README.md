@@ -19,9 +19,9 @@ Discord bot for morale improvement.
 #### Hooks
 - User-specific interaction:
   - Follows owner-selected users and occasionally showers them with praise
-  - Mentions
 - General interaction:
   - Listens for 'hello' and 'bye' and responds accordingly
+  - Listens for Users mention and acknowledges them with a rang message
 
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization
