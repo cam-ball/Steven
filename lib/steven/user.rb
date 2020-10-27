@@ -1,7 +1,7 @@
 module Steven
   # User class containing all data for any individual configured by owner
   class User
-    attr_accessor :actions, :server_id, :user_id, :username, :nickname
+    attr_accessor :actions, :server_id, :user_id, :username, :nickname, :last_triggered
 
     ALLOWED_ACTIONS = %i[affirm haze].freeze
 
@@ -11,6 +11,7 @@ module Steven
       @nickname = params[:nickname]
       @server_id = params[:server_id]
       @actions = []
+      @last_triggered = nil
     end
 
     def complete?
@@ -30,7 +31,8 @@ module Steven
 
       unless action_permitted?(action)
         @actions << action
-        initialize_action(action)
+        previous_trigger = update_trigger_timestamp
+        initialize_action(action, previous_trigger)
       end
 
       "Action added"
@@ -67,7 +69,8 @@ module Steven
         return "Requested action '#{action}' not defined"
       end
 
-      initialize_action(action)
+      previous_trigger = update_trigger_timestamp
+      initialize_action(action, previous_trigger)
     end
 
     def action_permitted?(action)
@@ -83,9 +86,15 @@ module Steven
 
     private
 
-    def initialize_action(action)
+    def update_trigger_timestamp
+      previous_trigger = @last_triggered
+      @last_triggered = Time.now
+      previous_trigger || Time.now
+    end
+
+    def initialize_action(action, previous_trigger_timestamp)
       instance_variable_set(counter(action), 0)
-      instance_variable_set(trigger(action), random_trigger)
+      instance_variable_set(trigger(action), seeded_trigger(previous_trigger_timestamp))
     end
 
     def counter(action)
@@ -96,8 +105,41 @@ module Steven
       "@#{action}_trigger"
     end
 
+    def seeded_trigger(previous_trigger_timestamp)
+      return random_trigger unless previous_trigger_timestamp
+
+      new_seed = trigger_seed(previous_trigger_timestamp)
+      variance = new_seed * 0.15
+      minimum = new_seed - variance
+      maximum = new_seed + variance
+
+      Random.rand(minimum..maximum)
+    end
+
     def random_trigger
-      Random.rand(30..50)
+      Random.rand(10..40)
+    end
+
+    def trigger_seed(previous_trigger_timestamp)
+      messages_per_day = average_messages_per_day(previous_trigger_timestamp)
+      messages_to_trigger = largest_trigger
+
+      [messages_to_trigger * 2, messages_per_day].min
+    end
+
+    def average_messages_per_day(previous_trigger_timestamp)
+      messages_to_trigger = largest_trigger
+      time_between_triggers = @last_triggered - previous_trigger_timestamp
+      # 86400 seconds in a day
+      triggers_per_day = 86400 / time_between_triggers.to_f
+
+      (triggers_per_day * messages_to_trigger).round
+    end
+
+    def largest_trigger
+      @actions.map do |action|
+        instance_variable_get(trigger(action)) || 0
+      end.max
     end
   end
 end

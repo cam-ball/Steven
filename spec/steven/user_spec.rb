@@ -172,6 +172,10 @@ RSpec.describe Steven::User do
           user.reset_action(action_val)
           expect(user.instance_variable_get(counter_symbol)).to eq(0)
         end
+
+        it 'resets the `last_triggered` timestamp' do
+          expect { user.reset_action(action_val) }.to change { user.last_triggered }
+        end
       end
 
       context "when the user is not configured for #{action_val}" do
@@ -188,6 +192,11 @@ RSpec.describe Steven::User do
       it do
         expect(user.reset_action(action_val))
           .to eq("Requested action '#{action_val}' not defined")
+      end
+
+      it 'does not reset the `last_triggered` timestamp' do
+        user.reset_action(action_val)
+        expect(user.last_triggered).to eq(nil)
       end
     end
   end
