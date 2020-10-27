@@ -51,6 +51,8 @@ module Steven
     end
 
     def increment(action)
+      return unless action_permitted?(action)
+
       val = instance_variable_get(counter(action)) || 0
       instance_variable_set(counter(action), val + 1)
     end
