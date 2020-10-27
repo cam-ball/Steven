@@ -21,7 +21,7 @@ Discord bot for morale improvement.
   - Follows owner-selected users and occasionally showers them with praise
 - General interaction:
   - Listens for 'hello' and 'bye' and responds accordingly
-  - Listens for Users mention and acknowledges them with a rang message
+  - Listens for Users mention
 
 #### Owner-only commands
 Can only be performed by the user designated as `:owner_id` in config.yml, which is set in Steven's initialization
@@ -31,7 +31,7 @@ Can only be performed by the user designated as `:owner_id` in config.yml, which
   - `!savedata` dumps all user data into `user_data.yml`  
   - `!help` general help on the bot
   - `!display` displays user info and current configuration
-  - `!removeaction [user_id]` removes given user(Owner only action)
+  - `!removeaction [user_id]` removes given user (Owner only action)
 
 #### Contributing
 ---
